@@ -45,10 +45,10 @@ namespace StoreConsoleApp
                 INSERT INTO products (name, description, price, weight, categoryid)
                 VALUES (@name, @desc, @price, @weight, @cat)", conn);
             cmd.Parameters.AddWithValue("name", name);
-            cmd.Parameters.AddWithValue("desc", (object)description ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("desc", (object)description);
             cmd.Parameters.AddWithValue("price", price);
-            cmd.Parameters.AddWithValue("weight", (object)weight ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("cat", (object)categoryId ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("weight", (object)weight);
+            cmd.Parameters.AddWithValue("cat", (object)categoryId);
 
             try
             {

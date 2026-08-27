@@ -43,13 +43,15 @@ while (true)
                 switch (catAction)
                 {
                     case "1":
-                        categoriesService.ShowAllCategories();
+                        categoriesService.ShowAllCategorieswithdapper();
                         break;
 
                     case "2":
                         System.Console.Write("Enter new category: ");
                         var nc = Console.ReadLine();
-                        categoriesService.AddNewCategory(nc, null, null);
+                        System.Console.Write("name bza: ");
+                        var nc2 = Console.ReadLine();
+                        categoriesService.AddNewCategorywithdapper(nc, nc2);
                         break;
 
                     case "3":
@@ -57,13 +59,13 @@ while (true)
                         var id = Convert.ToInt32(Console.ReadLine());
                         System.Console.Write("Enter new category description: ");
                         var nd = Console.ReadLine();
-                        categoriesService.UpdateDescriptionOfCategory(id, nd);
+                        categoriesService.UpdateDescriptionOfCategorywithdapper(id, nd);
                         break;
 
                     case "4":
                         System.Console.WriteLine("Enter category id: ");
                         var idd = Convert.ToInt32(Console.ReadLine());
-                        categoriesService.DeleteCategory(idd);
+                        categoriesService.Deletecategorywithdapper(idd);
                         break;
 
                     case "0":
@@ -137,7 +139,7 @@ while (true)
                 switch (whAction)
                 {
                     case "1":
-                        warehousesService.ShowAllWarehouses();
+                        warehousesService.ShowAllWarehouseswithdapper();
                         break;
 
                     case "2":
@@ -145,7 +147,7 @@ while (true)
                         var wn = Console.ReadLine();
                         System.Console.Write("Enter address: ");
                         var wa = Console.ReadLine();
-                        warehousesService.AddNewWarehouse(wn, wa);
+                        warehousesService.AddNewWarehousewithapper(wn, wa);
                         break;
 
                     case "3":

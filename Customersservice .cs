@@ -44,9 +44,9 @@ namespace StoreConsoleApp
                 INSERT INTO customers (fullname, email, phonnumber, address)
                 VALUES (@fullname, @email, @phone, @address)", conn);
             cmd.Parameters.AddWithValue("fullname", fullName);
-            cmd.Parameters.AddWithValue("email", (object)email ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("phone", (object)phoneNumber ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("address", (object)address ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("email", (object)email );
+            cmd.Parameters.AddWithValue("phone", (object)phoneNumber);
+            cmd.Parameters.AddWithValue("address", (object)address);
             cmd.ExecuteNonQuery();
 
             Console.WriteLine("Customer added.");

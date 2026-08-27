@@ -1,3 +1,4 @@
+using Dapper;
 using Npgsql;
 
 namespace StoreConsoleApp
@@ -42,7 +43,7 @@ namespace StoreConsoleApp
             using var cmd = new NpgsqlCommand(
                 "INSERT INTO warehouses (name, address) VALUES (@name, @address)", conn);
             cmd.Parameters.AddWithValue("name", name);
-            cmd.Parameters.AddWithValue("address", (object)address ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("address", (object)address);
             cmd.ExecuteNonQuery();
 
             Console.WriteLine("Warehouse added.");
@@ -78,6 +79,32 @@ namespace StoreConsoleApp
             catch (PostgresException ex) when (ex.SqlState == "23503")
             {
                 Console.WriteLine("Cannot delete: this warehouse has sales linked to it (sales reference warehouses with RESTRICT).");
+            }
+        }
+
+            public void ShowAllWarehouseswithdapper()
+        {
+            using var conn = new NpgsqlConnection(_connectionString);
+            conn.Open();
+            var a = conn.Query("select * from warehouses").ToList();
+            foreach(var b in a)
+            {
+                System.Console.WriteLine(b.id + " " + b.name + " " + b.address + " " + b.isactive);
+            }
+        }
+
+        public void AddNewWarehousewithapper(string name,string address)
+        {
+            using var conn = new NpgsqlConnection(_connectionString);
+            conn.Open();
+            var a = conn.Execute("insert into warehouses (name,address) values (@name,@address)," , new{name,address});
+            if (a > 0)
+            {
+                System.Console.WriteLine("add shid");
+            }
+            else
+            {
+                System.Console.WriteLine("add nashid");
             }
         }
     }
